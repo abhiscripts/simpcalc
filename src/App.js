@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [userInput, setUserInput] = useState(0);
+  const [result, setResult] = useState(0);
+  console.log(typeof(result),typeof(userInput))
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Simplest Working Calculator</h2>
+      <p>{result}</p>
+      <input
+        className="calcInput"
+        type="number"
+        value= {userInput}
+        onChange={(e) => setUserInput(Number(e.target.value))}
+      />
+      
+      <div className="calcButton">
+        <button onClick={(e) => setResult(result + userInput)}>Add</button>
+        <button onClick={(e) => setResult(result - userInput)}>Subtract</button>
+        <button onClick={(e) => setResult(result * userInput)}>Multiply</button>
+        <button onClick={(e) => setResult(result / userInput)}>Divide</button>
+        <button className="control" onClick={(e) => setUserInput(0)}>
+          Reset Input
+        </button>
+        <button className="control" onClick={(e) => setResult(0)}>
+          Reset Result
+        </button>
+      </div>
     </div>
   );
 }
